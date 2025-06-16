@@ -17,7 +17,7 @@ public class JavaHashSeparateChaining<T> {
     private LinkedList<Dado<T>>[] tabela;
     private int tamanho;
     private int numElementos;
-    private int comparacoes;
+    private int comparacoes; // Implementar para apresentar o número de comparações necessárias para inserir, buscar e remover elementos
 
     public JavaHashSeparateChaining(int tamanho) {
         this.tamanho = tamanho;
@@ -52,7 +52,7 @@ public class JavaHashSeparateChaining<T> {
         return false;
     }
 
-    public boolean deleteHash(long key) {
+    public boolean remove(long key) {
         int indice = funcaoHash(key);
         for (Dado<T> item : tabela[indice]) {
             if (item.key == key) {
@@ -62,6 +62,17 @@ public class JavaHashSeparateChaining<T> {
             }
         }
         return false;
+    }
+
+    public T get(long key) {
+        // implementar 
+        //Retorna o valor para o qual a chave especificada é mapeada ou null se este mapa não contém nenhum mapeamento para a chave.
+        return null; // Placeholder, implement this method 
+    }
+
+    public void replace(long key, T value) {
+        // implementar 
+        //Substitui a entrada da chave especificada para o valor V somente se ela estiver mapeada para algum valor.
     }
 
     public void printHash() {
@@ -96,7 +107,7 @@ public class JavaHashSeparateChaining<T> {
     private static int menu(Scanner scanner) {
         System.out.println("\t\t*** IFSULDEMINAS - CAMPUS MACHADO ***");
         System.out.println("\t\t*** Estrutura de Dados I ***");
-        System.out.println("\t\t*** HASH SEPARADO ***");
+        System.out.println("\t\t*** HASH ENCADEADO - Separate Chaining ***");
         System.out.println("1-Inserir");
         System.out.println("2-Remover");
         System.out.println("3-Buscar");
@@ -130,7 +141,7 @@ public class JavaHashSeparateChaining<T> {
                     System.out.print("Chave para remover: ");
                     chave = scanner.nextLong();
                     scanner.nextLine(); // Limpar o buffer
-                    boolean removeu = hashTable.deleteHash(chave);
+                    boolean removeu = hashTable.remove(chave);
                     if (!removeu) {
                         System.out.println("Chave nao existente para remocao");
                     } else {
