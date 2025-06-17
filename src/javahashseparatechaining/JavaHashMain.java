@@ -26,6 +26,8 @@ public class JavaHashMain<T> {
         int op;
         do {
             System.out.println(meuHashMap.toString());
+            System.out.println("Pressione Enter para continuar...");
+            scanner.nextLine(); // Aguarda o usuário pressionar Enter
             op = menu(scanner);
             switch (op) {
                 case 1:
@@ -83,13 +85,7 @@ public class JavaHashMain<T> {
                     System.out.println("Opcao invalida.");
                     break;
             }
-            try {
-                Thread.sleep(1000); // Pausa para simular o getch()
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-            System.out.print("\033[H\033[2J"); // Limpar a tela (ANSI escape code)
-            System.out.flush();
+            
         } while (op != 0);
 
         scanner.close();
