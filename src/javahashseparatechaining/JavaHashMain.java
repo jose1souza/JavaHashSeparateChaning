@@ -12,6 +12,7 @@ public class JavaHashMain<T> {
         System.out.println("2-Remover");
         System.out.println("3-Buscar");
         System.out.println("4-Alterar");
+        System.out.println("5- Visualizar Valor");
         System.out.println("0-Sair");
         System.out.print("Escolha uma opcao: ");
         return scanner.nextInt();
@@ -77,6 +78,18 @@ public class JavaHashMain<T> {
                     }
                     break;
 
+                case 5:
+                    System.out.print("Chave para busca de valor: ");
+                    chave = scanner.nextLong();
+                    scanner.nextLine(); // Limpar o buffer
+                    String retorno = meuHashMap.get(chave);
+                    if (retorno != null) {
+                        System.out.println("Valor: "+ retorno);
+                    } else {
+                        System.out.println("O valor é nulo");
+                    }
+                    break;
+                    
                 case 0:
                     System.out.println("Saindo...");
                     break;

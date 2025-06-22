@@ -65,7 +65,13 @@ public class CustomHashMap<T> {
     }
 
     public T get(long key) {
-        // implementar 
+        int indice = funcaoHash(key);
+        for(Dado<T> item : tabela[indice]){
+            while(item.value != null){
+                Dado<T> retorno = item;
+                return retorno.value;
+            }
+        }
         //Retorna o valor para o qual a chave especificada é mapeada ou null se este mapa não contém nenhum mapeamento para a chave.
         return null; // Placeholder, implement this method 
     }
