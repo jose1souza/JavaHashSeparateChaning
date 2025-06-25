@@ -35,11 +35,13 @@ public class CustomHashMap<T> {
         if ((double) numElementos / tamanho >= DEFAULT_LOAD_FACTOR) {
             resize();
         }
-        
+        this.comparacoes = 0;
         Dado<T> dado = new Dado<>(key, value);
         int indice = funcaoHash(key);
         tabela[indice].add(dado);
         numElementos++;
+        this.comparacoes++;
+        System.out.println("Número de comparações ao inserir: " + this.comparacoes);
     }
 
     public boolean containsKey(long key) {
@@ -54,10 +56,13 @@ public class CustomHashMap<T> {
 
     public boolean remove(long key) {
         int indice = funcaoHash(key);
+        this.comparacoes = 0;
         for (Dado<T> item : tabela[indice]) {
             if (item.key == key) {
                 tabela[indice].remove(item);
                 numElementos--;
+                this.comparacoes++;
+                System.out.println("Número de comparações ao remover: " + this.comparacoes);
                 return true;
             }
         }
@@ -66,21 +71,33 @@ public class CustomHashMap<T> {
 
     public T get(long key) {
         int indice = funcaoHash(key);
+        this.comparacoes = 0;
         for(Dado<T> item : tabela[indice]){
-            while(item.value != null){
-                Dado<T> retorno = item;
-                return retorno.value;
+            this.comparacoes++;
+            if(item.key == key){
+                System.out.println("Comparações realizadas ao pegar valor de uma chave: " + this.comparacoes);
+                return item.value;
             }
         }
+            return null;
         //Retorna o valor para o qual a chave especificada é mapeada ou null se este mapa não contém nenhum mapeamento para a chave.
-        return null; // Placeholder, implement this method 
+        // Placeholder, implement this method
     }
 
     public void replace(long key, T value) {
+        int indice = funcaoHash(key);
+        this.comparacoes = 0;
+        for(Dado<T> item : tabela[indice]){
+            this.comparacoes++;
+            if(item.key == key){
+                item.value = value;
+                break;
+            }
+        }
+        System.out.println("Comparações realizadas ao tentar trocar o valor de uma chave: " + this.comparacoes);
         // implementar 
         //Substitui a entrada da chave especificada para o valor V somente se ela estiver mapeada para algum valor.
     }
-
 
     private void resize() {
         int novoTamanho = tamanho * 2;
